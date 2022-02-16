@@ -6,17 +6,15 @@ class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];
   TypeScan selectedType = TypeScan.https;
 
-  Future<void> newScan(String value) async {
-    if (value.contains(TypeScan.geo.name) ||
-        value.contains(TypeScan.https.name)) {
-      final newScan = ScanModel(value: value);
-      final id = await DBProvider.newScan(newScan);
-      newScan.id = id;
-      if (selectedType == newScan.type) {
-        scans.add(newScan);
-        notifyListeners();
-      }
+  Future<ScanModel> newScan(String value) async {
+    final newScan = ScanModel(value: value);
+    final id = await DBProvider.newScan(newScan);
+    newScan.id = id;
+    if (selectedType == newScan.type) {
+      scans.add(newScan);
+      notifyListeners();
     }
+    return newScan;
   }
 
   Future<void> loadScans() async {

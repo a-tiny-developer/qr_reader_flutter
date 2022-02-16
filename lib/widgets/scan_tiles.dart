@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader_flutter/models/models.dart';
+import 'package:qr_reader_flutter/utils/utils.dart';
 
 import '../providers/providers.dart';
 
@@ -26,7 +27,9 @@ class ScanTiles extends StatelessWidget {
             color: Colors.red,
           ),
           child: ListTile(
-            onTap: () {},
+            onTap: () {
+              Utils.launchURL(context, scan);
+            },
             leading: Icon(
               type == TypeScan.https ? Icons.link : Icons.map,
               color: Theme.of(context).primaryColor,
