@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader_flutter/models/models.dart';
 
 import '../providers/providers.dart';
 
-class AddressesScreen extends StatelessWidget {
-  const AddressesScreen({Key? key}) : super(key: key);
+class ScanTiles extends StatelessWidget {
+  const ScanTiles({Key? key, required this.type}) : super(key: key);
+
+  final TypeScan type;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class AddressesScreen extends StatelessWidget {
           child: ListTile(
             onTap: () {},
             leading: Icon(
-              Icons.link,
+              type == TypeScan.https ? Icons.link : Icons.map,
               color: Theme.of(context).primaryColor,
             ),
             title: Text(scan.value),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader_flutter/models/models.dart';
 import 'package:qr_reader_flutter/providers/providers.dart';
-import 'package:qr_reader_flutter/screens/screens.dart';
 import 'package:qr_reader_flutter/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -50,12 +49,12 @@ class _HomePageBody extends StatelessWidget {
     switch (uiProvider.selectMenuOpt) {
       case 0:
         scanListProvider.loadScanByType(TypeScan.geo);
-        return const MapHistoryScreen();
+        return const ScanTiles(type: TypeScan.geo);
       case 1:
         scanListProvider.loadScanByType(TypeScan.https);
-        return const AddressesScreen();
+        return const ScanTiles(type: TypeScan.https);
       default:
-        return const MapHistoryScreen();
+        return const SizedBox();
     }
   }
 }
