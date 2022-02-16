@@ -13,17 +13,27 @@ class AddressesScreen extends StatelessWidget {
     return ListView.builder(
       itemCount: scans.length,
       itemBuilder: (context, index) {
-        return ListTile(
-          onTap: () {},
-          leading: Icon(
-            Icons.link,
-            color: Theme.of(context).primaryColor,
+        final scan = scans[index];
+        return Dismissible(
+          onDismissed: (direction) {
+            scanListProvider.clearScanById(scan.id!);
+          },
+          key: UniqueKey(),
+          background: Container(
+            color: Colors.red,
           ),
-          title: Text(scans[index].value),
-          subtitle: Text(scans[index].id.toString()),
-          trailing: const Icon(
-            Icons.keyboard_arrow_right,
-            color: Colors.grey,
+          child: ListTile(
+            onTap: () {},
+            leading: Icon(
+              Icons.link,
+              color: Theme.of(context).primaryColor,
+            ),
+            title: Text(scan.value),
+            subtitle: Text(scan.id.toString()),
+            trailing: const Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.grey,
+            ),
           ),
         );
       },

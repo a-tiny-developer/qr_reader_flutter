@@ -18,8 +18,9 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // final scanListProvider = Provider.of<ScanListProvider>(context);
-              // scanListProvider.clearAll();
+              final scanListProvider =
+                  Provider.of<ScanListProvider>(context, listen: false);
+              scanListProvider.clearAll();
               DBProvider.deleteAllScan();
             },
             icon: const Icon(

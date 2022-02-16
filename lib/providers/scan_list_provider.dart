@@ -40,6 +40,5 @@ class ScanListProvider extends ChangeNotifier {
 
   Future<void> clearScanById(int id) async {
     await DBProvider.deleteScan(id);
-    loadScanByType(selectedType);
   }
 }

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:qr_reader_flutter/models/models.dart';
-
 class ScanModel {
   ScanModel({
     this.id,
