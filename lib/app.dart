@@ -15,6 +15,9 @@ class QrReader extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => UiProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ScanListProvider(),
+        ),
       ],
       child: const _App(),
     );
