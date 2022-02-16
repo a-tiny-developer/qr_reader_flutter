@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader_flutter/models/models.dart';
 import 'package:qr_reader_flutter/providers/providers.dart';
 import 'package:qr_reader_flutter/screens/screens.dart';
 import 'package:qr_reader_flutter/widgets/widgets.dart';

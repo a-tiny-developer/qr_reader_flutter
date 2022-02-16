@@ -2,15 +2,15 @@ import 'dart:convert';
 
 class ScanModel {
   ScanModel({
-    required this.id,
-    required this.type,
+    this.id,
+    this.type,
     required this.value,
   }) {
-    type = type.contains('https') ? 'https' : 'geo';
+    type = value.contains('https') ? 'https' : 'geo';
   }
 
-  int id;
-  String type;
+  int? id;
+  String? type;
   String value;
 
   factory ScanModel.fromJson(String str) => ScanModel.fromMap(json.decode(str));
