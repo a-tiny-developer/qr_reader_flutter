@@ -49,7 +49,7 @@ class DBProvider {
     final res = await db.rawInsert(
       '''b
       INSERT INTO Scans( id, type, value )
-      VALUES( ${newScan.id}, '${newScan.type}', '${newScan.value}' )
+      VALUES( ${newScan.id}, '${newScan.type!.name}', '${newScan.value}' )
     ''',
     );
     return res;
@@ -80,11 +80,11 @@ class DBProvider {
     return res.isNotEmpty ? res.map((e) => ScanModel.fromMap(e)).toList() : [];
   }
 
-  static Future<List<ScanModel>> getScansByType(String type) async {
+  static Future<List<ScanModel>> getScansByType(TypeScan type) async {
     final db = await database();
     final res = await db.rawQuery(
       '''
-        SELECT * FROM Scans WHERE type = '$type'
+        SELECT * FROM Scans WHERE type = '${type.name}'
       ''',
     );
     return res.isNotEmpty ? res.map((e) => ScanModel.fromMap(e)).toList() : [];

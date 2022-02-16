@@ -4,15 +4,18 @@ import 'package:qr_reader_flutter/providers/db_provider.dart';
 
 class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];
-  String selectedType = 'https';
+  TypeScan selectedType = TypeScan.https;
 
   Future<void> newScan(String value) async {
-    final newScan = ScanModel(value: value);
-    final id = await DBProvider.newScan(newScan);
-    newScan.id = id;
-    if (selectedType == newScan.type) {
-      scans.add(newScan);
-      notifyListeners();
+    if (value.contains(TypeScan.geo.name) ||
+        value.contains(TypeScan.https.name)) {
+      final newScan = ScanModel(value: value);
+      final id = await DBProvider.newScan(newScan);
+      newScan.id = id;
+      if (selectedType == newScan.type) {
+        scans.add(newScan);
+        notifyListeners();
+      }
     }
   }
 
@@ -22,7 +25,7 @@ class ScanListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadScanByType(String type) async {
+  Future<void> loadScanByType(TypeScan type) async {
     final scans = await DBProvider.getScansByType(type);
     this.scans = scans;
     selectedType = type;

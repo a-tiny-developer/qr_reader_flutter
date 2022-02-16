@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';
 
-class AddressesScreen extends StatelessWidget {
-  const AddressesScreen({Key? key}) : super(key: key);
+class MapHistoryScreen extends StatelessWidget {
+  const MapHistoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class AddressesScreen extends StatelessWidget {
         return ListTile(
           onTap: () {},
           leading: Icon(
-            Icons.link,
+            Icons.map,
             color: Theme.of(context).primaryColor,
           ),
           title: Text(scans[index].value),

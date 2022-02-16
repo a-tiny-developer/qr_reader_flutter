@@ -17,7 +17,11 @@ class HomeScreen extends StatelessWidget {
         title: const Text('History'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // final scanListProvider = Provider.of<ScanListProvider>(context);
+              // scanListProvider.clearAll();
+              DBProvider.deleteAllScan();
+            },
             icon: const Icon(
               Icons.delete_forever,
             ),
@@ -38,10 +42,16 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
+
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+
     switch (uiProvider.selectMenuOpt) {
       case 0:
+        scanListProvider.loadScanByType(TypeScan.geo);
         return const MapHistoryScreen();
       case 1:
+        scanListProvider.loadScanByType(TypeScan.https);
         return const AddressesScreen();
       default:
         return const MapHistoryScreen();
