@@ -13,6 +13,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
+  var mapType = MapType.normal;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class _MapScreenState extends State<MapScreen> {
     final CameraPosition startingPoint = CameraPosition(
       target: scan.getLatLng(),
       zoom: 17.5,
-      tilt: 50,
+      // tilt: 50,
     );
 
     final markers = <Marker>{
@@ -44,7 +45,7 @@ class _MapScreenState extends State<MapScreen> {
                   CameraPosition(
                     target: scan.getLatLng(),
                     zoom: 17.5,
-                    tilt: 50,
+                    // tilt: 50,
                   ),
                 ),
               );
@@ -55,12 +56,21 @@ class _MapScreenState extends State<MapScreen> {
       ),
       body: GoogleMap(
         myLocationButtonEnabled: false,
-        mapType: MapType.normal,
+        mapType: mapType,
         markers: markers,
         initialCameraPosition: startingPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            mapType =
+                mapType == MapType.normal ? MapType.satellite : MapType.normal;
+          });
+        },
+        child: const Icon(Icons.layers),
       ),
     );
   }
