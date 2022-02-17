@@ -14,21 +14,23 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition startingPoint = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
   @override
   Widget build(BuildContext context) {
     final scan = ModalRoute.of(context)?.settings.arguments as ScanModel;
+
+    final CameraPosition startingPoint = CameraPosition(
+      target: scan.getLatLng(),
+      zoom: 17.5,
+      tilt: 50,
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Map'),
       ),
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        myLocationButtonEnabled: false,
+        mapType: MapType.normal,
         initialCameraPosition: startingPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
