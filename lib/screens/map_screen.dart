@@ -23,6 +23,14 @@ class _MapScreenState extends State<MapScreen> {
       zoom: 17.5,
       tilt: 50,
     );
+
+    final markers = <Marker>{
+      Marker(
+        markerId: const MarkerId('geo-location'),
+        position: scan.getLatLng(),
+      ),
+    };
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -31,6 +39,7 @@ class _MapScreenState extends State<MapScreen> {
       body: GoogleMap(
         myLocationButtonEnabled: false,
         mapType: MapType.normal,
+        markers: markers,
         initialCameraPosition: startingPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);

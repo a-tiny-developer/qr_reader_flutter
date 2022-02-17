@@ -20,7 +20,7 @@ class ScanButton extends StatelessWidget {
         //   false,
         //   ScanMode.QR,
         // );
-        const barcodeScanRes = 'geo:16.752258, -93.176553';
+        const barcodeScanRes = 'geo:48.85921542234218, 2.2947077058697367';
 
         if (barcodeScanRes.contains(TypeScan.geo.name) ||
             barcodeScanRes.contains(TypeScan.https.name)) {
