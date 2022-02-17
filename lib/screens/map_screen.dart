@@ -22,9 +22,8 @@ class _MapScreenState extends State<MapScreen> {
     final CameraPosition startingPoint = CameraPosition(
       target: scan.getLatLng(),
       zoom: 17.5,
-      // tilt: 50,
+      tilt: 50,
     );
-
     final markers = <Marker>{
       Marker(
         markerId: const MarkerId('geo-location'),
@@ -45,7 +44,7 @@ class _MapScreenState extends State<MapScreen> {
                   CameraPosition(
                     target: scan.getLatLng(),
                     zoom: 17.5,
-                    // tilt: 50,
+                    tilt: 50,
                   ),
                 ),
               );
