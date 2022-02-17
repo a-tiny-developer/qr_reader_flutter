@@ -35,6 +35,23 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Map'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: scan.getLatLng(),
+                    zoom: 17.5,
+                    tilt: 50,
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.location_on),
+          ),
+        ],
       ),
       body: GoogleMap(
         myLocationButtonEnabled: false,
