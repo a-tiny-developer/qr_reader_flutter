@@ -28,13 +28,16 @@ class ScanTiles extends StatelessWidget {
           ),
           child: ListTile(
             onTap: () {
-              Utils.launchURL(context, scan);
+              Utils.selectType(context, scan);
             },
             leading: Icon(
               type == TypeScan.https ? Icons.link : Icons.map,
               color: Theme.of(context).primaryColor,
             ),
-            title: Text(scan.value),
+            title: Text(
+              scan.value,
+              style: const TextStyle(overflow: TextOverflow.ellipsis),
+            ),
             subtitle: Text(scan.id.toString()),
             trailing: const Icon(
               Icons.keyboard_arrow_right,
