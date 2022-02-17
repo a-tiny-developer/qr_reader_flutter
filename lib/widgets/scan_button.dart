@@ -20,13 +20,12 @@ class ScanButton extends StatelessWidget {
           false,
           ScanMode.QR,
         );
-
         if (barcodeScanRes.contains(TypeScan.geo.name) ||
             barcodeScanRes.contains(TypeScan.https.name)) {
           final scanListProvider =
               Provider.of<ScanListProvider>(context, listen: false);
           final scan = await scanListProvider.newScan(barcodeScanRes);
-          Utils.launchURL(context, scan);
+          Utils.selectType(context, scan);
         }
       },
       child: const Icon(Icons.filter_center_focus),
